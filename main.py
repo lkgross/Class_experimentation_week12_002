@@ -1,3 +1,6 @@
+import random
+
+
 # This is a sample Python script.
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -57,6 +60,14 @@ def loop6(word):
         print(f"There is no 'e' in {word}.")
 
 
+def e_counter(word):
+    sum_e = 0
+    for character in word:
+        if character == 'e':
+            sum_e += 1
+    return sum_e
+
+
 def operation1(n):
     '''Add the first n numbers.'''
     sum = 0
@@ -69,10 +80,77 @@ def timesTable():
     for i in range(1, 13):
         print(f'1 * {i} = {1 * i}')
 
+
 def timesTable2():
     for i in range(1, 13):
         for j in range(1, 13):
             print(f'{i} * {j} = {i * j}')
+
+
+# Recursion is another way to write indefinite loops besides while.
+
+def maze():
+    '''Remain lost if you turn left and
+    fall in a pit if you do anything else.'''
+    response = 'left'
+    while response == 'left':
+        response = input("You are lost in a scary maze. "
+                         "Will you go left or right? ")
+    print("You fall in a pit. You lose.")
+
+
+# Recursive actions invoke themselves.
+# You will write functions that call themselves.
+def maze2():
+    '''Use recursion to remain lost if you turn left and
+        fall in a pit if you do anything else.'''
+    # INITIALIZE the variable response
+    # and subsequently update it.
+    response = input("You are lost in a scary maze. "
+                     "Will you go left or right? ")
+    # Define a STOP condition.
+    if response != 'left':
+        print("You fall in a pit. You lose.")
+    else:
+        # Have the function CALL ITSELF.
+        maze2()
+
+
+# Functions written with while can be rewritten recursion and vice versa.
+def guess_number():
+    '''Prompt the user to guess a number between 1 and 10.
+    Prompt for higher or lower as needed.
+    Report when the guess is correct.'''
+    # Generate the random number to be guessed.
+    answer = random.randrange(10) + 1
+    guess = int(input("Guess a number between 1 and 10. "))
+    while guess != answer:
+        if guess < answer:
+            guess = int(input("Guess higher! "))
+        else:
+            guess = int(input("Guess lower! "))
+    print("You guessed it!")
+
+
+def guess_number2():
+    '''Prompt the user to guess a number between 1 and 10.
+    Prompt for higher or lower as needed.
+    Report when the guess is correct. Use recursion.'''
+    # Generate the random number to be guessed.
+    answer = random.randrange(10) + 1
+    guess = int(input("Guess a number between 1 and 10. "))
+    try_it(answer, guess)
+
+def try_it(answer, guess):
+    if guess == answer:
+        print("You guessed it!")
+    elif guess < answer:
+        guess = int(input("Guess higher! "))
+        try_it(answer, guess)
+    else:
+        guess = int(input("Guess lower! "))
+        try_it(answer, guess)
+
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -85,8 +163,16 @@ if __name__ == '__main__':
     # loop5()
     # loop6("froggy")
     # loop6("juice")
-    # print(operation1(5))
+    # loop6("excellent")
+    # print(f'There are {e_counter("excellent")} letters "e" in "excellent".')
+    # print(f'There are {e_counter("juice")} letters "e" in "juice".')
+    # print(f'There are {e_counter("froggy")} letters "e" in "froggy".')
+    # print(operation1(6))
     # timesTable()
-    timesTable2()
+    # timesTable2()
+    # maze()
+    # maze2()
+    # guess_number()
+    guess_number2()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
