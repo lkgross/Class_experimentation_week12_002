@@ -76,6 +76,25 @@ def operation1(n):
     return sum
 
 
+def operation2(n):
+    '''Multiply the first n numbers.'''
+    product = 1
+    for i in range(1, n + 1):
+        product = product * i
+        # print(product)
+    return product
+
+
+def operation3():
+    '''Cummulatively concatenate onto a string.'''
+    my_grades = [4, 3, 2, 3, 3, 4]
+    my_string = "The grades are: "
+    for i in range(len(my_grades) - 1):
+        my_string = my_string + str(my_grades[i]) + ', '
+    my_string += f'{str(my_grades[-1])}.'
+    return my_string
+
+
 def timesTable():
     for i in range(1, 13):
         print(f'1 * {i} = {1 * i}')
@@ -141,6 +160,7 @@ def guess_number2():
     guess = int(input("Guess a number between 1 and 10. "))
     try_it(answer, guess)
 
+
 def try_it(answer, guess):
     if guess == answer:
         print("You guessed it!")
@@ -150,6 +170,46 @@ def try_it(answer, guess):
     else:
         guess = int(input("Guess lower! "))
         try_it(answer, guess)
+
+
+def countdown_recursive(number):
+    # Define a STOP condition.
+    if number < 0:
+        print("Blastoff!")
+    else:
+        print(number)
+        countdown_recursive(number - 1)
+
+
+# This function contains a common error!
+# Put the stop condition in an if
+# and then put the recursive call in an else block.
+
+def countdown_recursive2(number):
+    print(number)
+    countdown_recursive2(number - 1)
+    # Define a STOP condition.
+    if number < 0:
+        print("Blastoff!")
+
+
+# An alternative to a stop condition is a go condition.
+def countdown_recursive3(number):
+    # Define a GO condition.
+    if number >= 0:
+        print(number)
+        countdown_recursive(number - 1)
+    else:
+        print("Blastoff!")
+
+
+# What is the error in this version?
+def countdown_recursive_wrong(number):
+    # Define a GO condition.
+    if number >= 0:
+        print(number)
+        countdown_recursive_wrong(number - 1)
+    print("Blastoff!")
 
 
 # Press the green button in the gutter to run the script.
@@ -168,11 +228,14 @@ if __name__ == '__main__':
     # print(f'There are {e_counter("juice")} letters "e" in "juice".')
     # print(f'There are {e_counter("froggy")} letters "e" in "froggy".')
     # print(operation1(6))
+    # print(operation2(6))
+    # print(operation3())
     # timesTable()
     # timesTable2()
     # maze()
     # maze2()
     # guess_number()
-    guess_number2()
+    # guess_number2()
+    countdown_recursive_wrong(3)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
